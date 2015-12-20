@@ -81,6 +81,15 @@ public class AdaptadorDirecciones extends RecyclerView.Adapter<AdaptadorDireccio
             DIRECCIONES.add(new Direccion("Cra 24 #2C-50", "Valle", "Cali", "3459821"));
             DIRECCIONES.add(new Direccion("Calle 100 Trans. 23", "Valle", "Cali", "4992600"));
             DIRECCIONES.add(new Direccion("Ave. 3ra N. #20-10", "Valle", "Cali", "4400725"));
+            DIRECCIONES.add(new Direccion("Cra 24 #2C-50", "Valle", "Cali", "3459821"));
+            DIRECCIONES.add(new Direccion("Calle 100 Trans. 23", "Valle", "Cali", "4992600"));
+            DIRECCIONES.add(new Direccion("Ave. 3ra N. #20-10", "Valle", "Cali", "4400725"));
+            DIRECCIONES.add(new Direccion("Cra 24 #2C-50", "Valle", "Cali", "3459821"));
+            DIRECCIONES.add(new Direccion("Calle 100 Trans. 23", "Valle", "Cali", "4992600"));
+            DIRECCIONES.add(new Direccion("Ave. 3ra N. #20-10", "Valle", "Cali", "4400725"));
+            DIRECCIONES.add(new Direccion("Cra 24 #2C-50", "Valle", "Cali", "3459821"));
+            DIRECCIONES.add(new Direccion("Calle 100 Trans. 23", "Valle", "Cali", "4992600"));
+            DIRECCIONES.add(new Direccion("Ave. 3ra N. #20-10", "Valle", "Cali", "4400725"));
         }
     }
 
