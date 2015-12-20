@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
                 fragmentoGenerico = new FragmentoInicio();
                 break;
             case R.id.item_cuenta:
-                // Fragmento para la sección Cuenta
+                fragmentoGenerico = new FragmentoCuenta();
                 break;
             case R.id.item_categorias:
-                // Fragmento para la sección Categorías
+//                fragmentoGenerico = new FragmentoCategorias();
                 break;
             case R.id.item_configuracion:
-                // Iniciar actividad de configuración
+//                startActivity(new Intent(this, ActividadConfiguracion.class));
                 break;
         }
         if (fragmentoGenerico != null) {
