@@ -1,5 +1,9 @@
 package jdqp.navigationdrawertytabs;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,17 +15,51 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     //    todo el contenido
     private DrawerLayout drawerLayout;
+
+    /**
+     * variables para las notificaicones de barra de estado
+     */
+    private NotificationManager nm;
+    private static final int ID_NOTIFICACION_CREAR = 1;
+
+    /**
+     *
+     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        /**
+         * variables para las notificaicones de barra de estado
+         */
+//        int icon = R.drawable.busqueda;
+//        CharSequence tickerText = "Esto es una notificaion de prueba";
+//        long when = System.currentTimeMillis();
+//        Notification notification = new Notification(icon, tickerText, when);
+//
+//
+//        Context context = getApplicationContext();
+//        CharSequence contentTitle = "My notification";
+//        CharSequence contentText = "Hello World!";
+//        Intent notificationIntent = new Intent(this, this.getClass());
+//        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+//        notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+        /**
+         *
+         */
         agregarToolbar();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -33,6 +71,24 @@ public class MainActivity extends AppCompatActivity {
             seleccionarItem(navigationView.getMenu().getItem(0));
         }
 
+    }
+
+    private void triggerNotification(Class  n) {
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification notification = new Notification(R.drawable.busqueda, "¡Nuevo mensaje de notificaion!", System.currentTimeMillis());
+
+        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_layout);
+        contentView.setImageViewResource(R.id.img_notificacion, R.drawable.coctel);
+        contentView.setTextViewText(R.id.txt_notificaion, "Ey mundo! Esta es mi notificación personalizada.");
+
+        notification.contentView = contentView;
+
+        Intent notificationIntent = new Intent(this,n);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        notification.contentIntent = contentIntent;
+
+        notificationManager.notify(ID_NOTIFICACION_CREAR, notification);
     }
 
     private void prepararDrawer(NavigationView navigationView) {
@@ -104,9 +160,19 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
             case R.id.action_alerta:
-                Toast.makeText(this,"notificaion de prueba",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "notificaion de prueba", Toast.LENGTH_LONG).show();
+                Timer timer = new Timer();
+                TimerTask timerTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        triggerNotification(MainActivity.class);
+                    }
+                };
+                timer.schedule(timerTask, 3000);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
